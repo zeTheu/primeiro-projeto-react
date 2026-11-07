@@ -1,14 +1,15 @@
-function ProductCard({ produto }) {
+function ProductCard({ produto, aoSomarItens }) {
 
-    const preco = produto.preco
-    
-
+    const preco = produto.preco 
     return (
-
+        
         <div>
+            <button onClick={aoSomarItens}>Adicionar</button>
+
             <p>Produto: {produto.item}</p>
             <p>Preço: {preco.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}</p>
-            <p>Estoque: {produto.estoque ? "Disponível" : "Indisponível"}</p>
+            <p>Categoria: {produto.categoria}</p>
+            <p>Estoque: {produto.estoque == true ? "Disponível" : "Indisponível"}</p>
         </div>
     )
 }
