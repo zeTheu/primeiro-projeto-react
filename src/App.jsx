@@ -4,24 +4,33 @@ import { listaProdutos } from "./products";
 import { useState } from "react";
 
 function App() {
-  const [contador, setContador] = useState(0);
+  const [carrinho, setCarrinho] = useState([]);
 
-  function somaCarrinho() {
-    setContador((valorCarrinho) => valorCarrinho + 1);
+  const somaTotal = carrinho.reduce((acc, valorItem) => {
+    return acc + valorItem.preco;
+  }, 0)
+
+  function adicionarProduto(novoProduto) {
+    setCarrinho((valorCarrinho) => [...valorCarrinho, novoProduto]);
   }
-
-  
 
   return (
     <>
-      <h2>Itens no carrinho: {contador}</h2>
+      <h2>Itens no carrinho: {carrinho.length}</h2>
+        <p>Total: {somaTotal.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}</p>
+      <ul>
+        {carrinho.map((produto, indice) => (
+          <li key={indice}>
+            {produto.item}</li>
+        ))}
+      </ul>
 
       <ul>
         {listaProdutos
           .filter((produto) => produto.estoque === true)
           .map((produto) => (
             <li key={produto.id}>
-              <ProductCard produto={produto} aoSomarItens={somaCarrinho} /> <br />
+              <ProductCard produto={produto} aoSomarItens={adicionarProduto} /> <br />
             </li>
           ))}
       </ul>

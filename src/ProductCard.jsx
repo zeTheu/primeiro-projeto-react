@@ -4,7 +4,7 @@ function ProductCard({ produto, aoSomarItens }) {
     return (
         
         <div>
-            <button onClick={aoSomarItens}>Adicionar</button>
+            <button onClick={() => aoSomarItens(produto)}>Adicionar</button>
 
             <p>Produto: {produto.item}</p>
             <p>Preço: {preco.toLocaleString("pt-BR", {style: "currency", currency: "BRL"})}</p>
