@@ -14,6 +14,12 @@ function App() {
     setCarrinho((valorCarrinho) => [...valorCarrinho, novoProduto]);
   }
 
+  function removerItemCarrinho(posicao) {
+    setCarrinho((itensCarrinho) => itensCarrinho.filter((item, indicePosicao) => indicePosicao !== posicao))
+  }
+
+  
+
   return (
     <>
       <h2>Itens no carrinho: {carrinho.length}</h2>
@@ -21,7 +27,9 @@ function App() {
       <ul>
         {carrinho.map((produto, indice) => (
           <li key={indice}>
-            {produto.item}</li>
+            {produto.item}
+            <button onClick={() => removerItemCarrinho(indice)}>Remover</button>
+          </li>
         ))}
       </ul>
 
